@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Restaurant | Expérience Sunset Premium</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ======================= Variables et couleurs ======================= */
+        :root {
+            --color-primary: #FF8C00;
+            --color-secondary: #C70039;
+            --color-gold: #FFD700;
+            --color-background: #F8F4F0;
+            --color-dark: #333;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-dark);
+            direction: ltr;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        section { padding: 80px 5%; }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--color-secondary);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .navbar {
+            display:flex; justify-content:space-between; align-items:center;
+            padding:15px 5%;
+            background-color: rgba(0,0,0,0.7);
+            position: fixed; width: 100%; top:0; z-index:1000;
+        }
+
+        .logo { color: var(--color-gold); font-size:1.5em; font-weight:700; }
+        .logo img { height:50px; vertical-align:middle; }
+
+        .nav-links a { color:white; text-decoration:none; margin-right:30px; font-size:1.1em; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--color-primary); }
+
+        .lang-switch a { color:white; text-decoration:none; padding:5px 10px; }
+
+        .hero-section {
+            position: relative; height:100vh;
+            background-image: url('sunset-hero.jpg'); 
+            background-size: cover; background-position:center;
+            display:flex; justify-content:center; align-items:center; text-align:center;
+            color:white;
+        }
+
+        .hero-content {
+            background-color: rgba(0,0,0,0.4);
+            padding:40px 60px; border-radius:10px;
+        }
+
+        .main-title { font-size:4.5em; margin-bottom:10px; color:var(--color-gold); text-shadow:2px 2px 5px #000; }
+        .slogan { font-size:1.6em; margin-bottom:30px; font-weight:300; }
+        .cta-button { display:inline-block; padding:15px 40px; background-color:var(--color-primary); color:white; text-decoration:none; font-size:1.3em; border-radius:50px; transition: background-color 0.3s; font-weight:700; border:2px solid transparent; }
+        .cta-button:hover { background-color: var(--color-secondary); border-color: var(--color-gold); }
+
+        .features-grid { display:flex; justify-content:space-around; gap:30px; }
+        .feature-item { flex-basis:30%; padding:30px; background-color:white; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.08); text-align:center; }
+        .feature-item .icon { font-size:3em; display:block; margin-bottom:15px; color: var(--color-primary); }
+        .feature-item h3 { font-size:1.6em; margin-bottom:10px; }
+
+        .menu-content h3 {
+            font-size:2em; color: var(--color-secondary); margin-bottom:25px; text-align:left; border-bottom:1px dashed #ccc; padding-bottom:5px;
+        }
+
+        .dishes-grid { display:flex; flex-wrap:wrap; gap:30px; justify-content:flex-start; }
+        .dish-card { flex-basis: calc(33.33% - 20px); background-color:white; border-radius:10px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .dish-card:hover { transform: translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.15); }
+        .dish-card img { width:100%; height:220px; object-fit:cover; }
+        .dish-card h4 { font-size:1.4em; padding:15px 15px 5px; color: var(--color-dark); }
+        .dish-card p { font-size:1em; color:#666; padding:0 15px 10px; }
+        .dish-card .price { display:block; font-size:1.3em; font-weight:700; color: var(--color-primary); padding:10px 15px 15px; border-top:1px dashed #eee; text-align:left; }
+        .dish-card.featured { border:3px solid var(--color-gold); }
+
+        .reservation-section { background-color:#eee; text-align:center; }
+        .reservation-form { max-width:600px; margin:0 auto; background-color:white; padding:40px; border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.1); }
+        .reservation-form label { display:block; text-align:left; margin-bottom:5px; font-weight:700; color: var(--color-dark); }
+        .reservation-form input[type="text"], input[type="email"], input[type="date"], input[type="time"], input[type="number"] { width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box; font-family:inherit; }
+        .reservation-form button { padding:15px 40px; background-color: var(--color-secondary); color:white; border:none; border-radius:50px; font-size:1.2em; cursor:pointer; transition: background-color 0.3s; font-weight:700; }
+        .reservation-form button:hover { background-color:var(--color-primary); }
+
+        .footer { background-color:#222; color:white; padding:40px 5%; text-align:center; }
+        .footer-content { display:flex; justify-content:space-around; align-items:flex-start; margin-bottom:20px; }
+        .contact-info h4 { color: var(--color-gold); margin-bottom:10px; }
+        .social-links a { text-decoration:none; color:var(--color-primary); font-size:1.8em; margin:0 10px; transition: color 0.3s; }
+        .social-links a:hover { color: var(--color-gold); }
+        .copyright { border-top:1px solid #555; padding-top:15px; margin-top:20px; font-size:0.9em; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            Sunset Restaurant
+        </div>
+        <nav class="nav-links">
+            <a href="#home" class="active">Accueil</a>
+            <a href="#features">Expérience</a>
+            <a href="#menu">Menu</a>
+            <a href="#reservation">Réservation</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="lang-switch">
+            <a href="#">AR</a> | <a href="#">EN</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">SUNSET RESTAURANT</h1>
+            <p class="slogan">Le goût du bonheur face au coucher du soleil</p>
+            <a href="#reservation" class="cta-button">Réservez votre table maintenant</a>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <h2>Notre expérience unique</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="icon">🔥</i>
+                <h3>Cuisine marocaine authentique</h3>
+                <p>Un voyage culinaire riche en épices et couleurs, présenté avec une touche moderne.</p>
+            </div>
+            <div class="feature-item">
+                <i class="icon">🌅</i>
+                <h3>Vue imprenable</h3>
+                <p>Profitez d'un coucher de soleil magique depuis notre terrasse surplombant l'océan Atlantique.</p>
+            </div>
+            <div class="feature-item">
+                <i class="icon">🥗</i>
+                <h3>Qualité des ingrédients</h3>
+                <p>Ingrédients frais chaque jour pour garantir des saveurs et une qualité optimales.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2>Notre menu</h2>
+        <div class="menu-content">
+            <h3>Trésors Marocains</h3>
+            <div class="dishes-grid">
+                <div class="dish-card featured">
+                    <img src="couscous.jpg" alt="Couscous marocain traditionnel">
+                    <h4>Couscous marocain traditionnel</h4>
+                    <p>Couscous traditionnel avec légumes de saison et épices marocaines authentiques.</p>
+                    <span class="price">255 MAD</span>
+                </div>
+                <div class="dish-card featured">
+                    <img src="tagine.jpg" alt="Tajine d'agneau aux pruneaux et amandes">
+                    <h4>Tajine d'agneau aux pruneaux et amandes</h4>
+                    <p>Agneau mijoté lentement avec des pruneaux sucrés et des amandes croquantes.</p>
+                    <span class="price">250 MAD</span>
+                </div>
+                <div class="dish-card">
+                    <img src="pastilla.jpg" alt="Pastilla au poulet et amandes">
+                    <h4>Pastilla au poulet et amandes</h4>
+                    <p>Tarte marocaine salée-sucrée farcie au poulet, œufs et amandes.</p>
+                    <span class="price">250 MAD</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation" class="reservation-section">
+        <h2>Réservez votre table</h2>
+        <div class="reservation-form">
+            <p>Pour profiter de la meilleure vue sur le coucher du soleil, veuillez remplir le formulaire et réserver votre table à l'avance.</p>
+            <form action="#" method="POST">
+                <label for="name">Nom complet :</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="guests">Nombre de personnes :</label>
+                <input type="number" id="guests" name="guests" min="1" required>
+
+                <label for="date">Date :</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Heure :</label>
+                <input type="time" id="time" name="time" required>
+
+                <button type="submit">Confirmer la réservation</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <h4>Contactez-nous</h4>
+                <p>Adresse : [Zone Manara Al Anq, Casablanca]</p>
+                <p>Téléphone : +212699299877</p>
+                <p>Email : Restaurant.sunst@gmail.com</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f">F</i></a>
+                <a href="#"><i class="fab fa-instagram">I</i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Conçu avec professionnalisme pour Sunset Restaurant &copy; 2025. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
